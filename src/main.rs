@@ -100,7 +100,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 fn verify_auth(headers: &HeaderMap, required_key: &Option<String>) -> Result<(), Response> {
-    let Some(ref expected) = required_key else {
+    let Some(expected) = required_key else {
         return Ok(());
     };
 
