@@ -9,3 +9,4 @@ services:
       - HOST=0.0.0.0
       - PORT=8080
 #      - API_KEY=...
+#      - API_BASE=https://index-translate.bilibili.com/v1
