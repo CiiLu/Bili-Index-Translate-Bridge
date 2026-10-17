@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-COPY --from=builder /app/target/release/Bili-Index-Translate-Bridge /usr/local/bin/bili-bridge
+COPY --from=builder /app/target/release/Bili-Index-Translate-Bridge /usr/local/bin/bili-index-translate-bridge
 
 ENV HOST=0.0.0.0 \
     PORT=8080 \
@@ -23,4 +23,4 @@ ENV HOST=0.0.0.0 \
 
 EXPOSE 8080
 
-ENTRYPOINT ["/usr/local/bin/bili-bridge"]
+ENTRYPOINT ["/usr/local/bin/bili-index-translate-bridge"]

@@ -1,5 +1,5 @@
 services:
-  bili-bridge:
+  bili-index-translate-bridge:
     image: ghcr.io/ciilu/bili-index-translate-bridge:latest
     container_name: bili-index-translate-bridge
     restart: unless-stopped

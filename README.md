@@ -14,7 +14,7 @@ cargo run --release -- --host 127.0.0.1 --port 8080 --api-key "..."
 
 ```yaml
 services:
-  bili-bridge:
+  bili-index-translate-bridge:
     image: ghcr.io/ciilu/bili-index-translate-bridge:latest
     container_name: bili-index-translate-bridge
     restart: unless-stopped
