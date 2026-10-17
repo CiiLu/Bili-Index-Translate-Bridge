@@ -17,7 +17,10 @@ WORKDIR /app
 
 COPY --from=builder /app/target/release/Bili-Index-Translate-Bridge /usr/local/bin/bili-bridge
 
+ENV HOST=0.0.0.0 \
+    PORT=8080 \
+    API_BASE="https://index-translate.bilibili.com/v1"
+
 EXPOSE 8080
 
 ENTRYPOINT ["/usr/local/bin/bili-bridge"]
-CMD ["--host", "0.0.0.0", "--port", "8080"]
