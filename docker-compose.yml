@@ -1,0 +1,17 @@
+services:
+  bilibili-index-translate-bridge:
+    # 替换为你实际的 GitHub 用户名/组织名以及仓库名（全小写）
+    image: ghcr.io/ciilu/bili-index-translate-bridge:latest
+    container_name: bili-index-translate-bridge
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    command:
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "8080"
+      # - "--api-key"
+      # - "..."
+      # - "--api-base"
+      # - "https://index-translate.bilibili.com/v1"
