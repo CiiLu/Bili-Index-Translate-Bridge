@@ -4,7 +4,7 @@ use std::time::Duration;
 
 use axum::body::Body;
 use axum::extract::State;
-use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
+use axum::http::{HeaderMap, StatusCode, header};
 use axum::response::{IntoResponse, Response};
 use axum::routing::{get, post};
 use axum::{Json, Router};
@@ -19,16 +19,16 @@ const DEFAULT_MODEL: &str = "Index-Translate-35B-A3B";
 #[derive(Parser, Debug, Clone)]
 #[command(author, version, about = "Index-Translate OpenAI-compatible Rust Proxy Server")]
 struct Cli {
-    #[arg(long, default_value = "127.0.0.1")]
+    #[arg(long, env = "HOST", default_value = "127.0.0.1")]
     host: String,
 
-    #[arg(short, long, default_value_t = 8080)]
+    #[arg(short, long, env = "PORT", default_value_t = 8080)]
     port: u16,
 
-    #[arg(long, default_value = DEFAULT_API_BASE)]
+    #[arg(long, env = "API_BASE", default_value = DEFAULT_API_BASE)]
     api_base: String,
 
-    #[arg(long)]
+    #[arg(long, env = "API_KEY")]
     api_key: Option<String>,
 }
 
