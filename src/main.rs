@@ -201,7 +201,7 @@ async fn chat_completions_handler(
     let upstream_url = format!("{}/chat/completions", state.api_base);
 
     let max_attempts = 4;
-    let mut last_error_response: Option<Response> = None;
+    let last_error_response: Option<Response> = None;
 
     for attempt in 1..=max_attempts {
         let req = state
@@ -383,22 +383,22 @@ async fn forward_generic_request(
             .map(|ct| ct.contains("text/event-stream"))
             .unwrap_or(false);
 
-        if is_stream {
-            return Ok(Response::builder()
+        return if is_stream {
+            Ok(Response::builder()
                 .status(status)
                 .header(header::CONTENT_TYPE, "text/event-stream")
                 .body(Body::from_stream(resp.bytes_stream()))
-                .unwrap());
+                .unwrap())
         } else {
             let res_bytes = resp.bytes().await.unwrap_or_default();
             if res_bytes.is_empty() && attempt < max_attempts {
                 continue;
             }
-            return Ok(Response::builder()
+            Ok(Response::builder()
                 .status(status)
                 .header(header::CONTENT_TYPE, "application/json")
                 .body(Body::from(res_bytes))
-                .unwrap());
+                .unwrap())
         }
     }
 
